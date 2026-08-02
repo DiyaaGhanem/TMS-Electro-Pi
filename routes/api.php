@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
-
+use App\Http\Controllers\TaskController;
 
 Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
@@ -16,4 +16,7 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('projects', ProjectController::class);
+    Route::prefix('projects/{project_id}')->group(function () {
+        Route::apiResource('tasks', TaskController::class)->except(['show']);
+    });
 });
