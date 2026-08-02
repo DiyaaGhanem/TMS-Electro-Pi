@@ -27,4 +27,26 @@ class RegisterRequest extends FormRequest
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
+
+    public function bodyParameters(): array
+    {
+        return [
+            'name' => [
+                'description' => 'The full name of the user.',
+                'example' => 'John Doe',
+            ],
+            'email' => [
+                'description' => 'A unique email address used for logging in.',
+                'example' => 'john@example.com',
+            ],
+            'password' => [
+                'description' => 'A secure password (minimum 8 characters).',
+                'example' => 'password',
+            ],
+            'password_confirmation' => [
+                'description' => 'Must match the password field.',
+                'example' => 'password',
+            ],
+        ];
+    }
 }
